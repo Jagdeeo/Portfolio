@@ -1,82 +1,26 @@
+import React from "react";
 import Navbar from "./Components/Navbar";
-import Hero from "./Components/Hero.jsx";
+import Hero from "./Components/Hero";
+import About from "./Components/About";
+import TechStack from "./Components/TechStack";
+import Projects from "./Components/Projects";
+import CyberSecurity from "./Components/CyberSecurity";
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-[#050909]">
-
-      {/* Light Mode Background */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-0
-          dark:hidden
-        "
-        style={{
-          backgroundImage: `
-            radial-gradient(
-              125% 125% at 50% 90%,
-              #ffffff 40%,
-              #8edcd4 100%
-            )
-          `,
-        }}
-      />
-
-      {/* Dark Mode Background */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-0
-          hidden
-          dark:block
-        "
-        style={{
-          backgroundImage: `
-            radial-gradient(
-              125% 125% at 50% 90%,
-              #050909 40%,
-              #174542 100%
-            )
-          `,
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10">
-        <Navbar />
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#08080a] dark:text-slate-100 font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-300 overflow-x-hidden">
+      <Navbar />
+      <main>
         <Hero />
-
-        <main>
-          <section
-            id="home"
-            className="min-h-screen"
-          >
-            {/* Hero section */}
-          </section>
-
-          <section id="about">
-            {/* About */}
-          </section>
-
-          <section id="skills">
-            {/* Skills */}
-          </section>
-
-          <section id="projects">
-            {/* Projects */}
-          </section>
-
-          <section id="contact">
-            {/* Contact */}
-          </section>
-        </main>
-      </div>
-
+        <About />
+        <TechStack />
+        <Projects />
+        <CyberSecurity />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }

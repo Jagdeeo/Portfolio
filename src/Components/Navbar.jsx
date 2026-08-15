@@ -1,34 +1,50 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  FiSun,
+  FiMoon,
+  FiMenu,
+  FiX,
+  FiArrowUpRight,
+  FiTerminal,
   FiGithub,
   FiLinkedin,
   FiMail,
-  FiMoon,
-  FiSun,
-  FiMenu,
-  FiX,
 } from "react-icons/fi";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) return savedTheme === "dark";
+      return document.documentElement.classList.contains("dark");
+    }
+    return true;
   });
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Apply theme
   useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Apply theme class to <html> element
+  useEffect(() => {
+    const root = document.documentElement;
     if (darkMode) {
-      document.documentElement.classList.add("dark");
+      root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
 
-  // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
   };
@@ -36,376 +52,190 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
+    { name: "Tech Stack", href: "#techstack" },
     { name: "Projects", href: "#projects" },
+    { name: "Security & AI", href: "#security" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
-        duration: 0.6,
-        ease: "easeOut",
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
       }}
-      className="
-        fixed top-0 left-0 z-50 w-full
-        border-b border-white/20
-        bg-white/10
-        backdrop-blur-xl
-        backdrop-saturate-150
-        shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-        dark:border-white/10
-        dark:bg-black/10
-        dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]
-      "
+      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 transition-all duration-300 pointer-events-none"
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div
+        className={`mx-auto max-w-6xl rounded-full transition-all duration-300 pointer-events-auto ${
+          scrolled
+            ? "bg-white/80 dark:bg-[#0c0c0e]/85 backdrop-blur-xl border border-black/10 dark:border-white/15 shadow-lg shadow-black/5 dark:shadow-black/40 py-2.5 px-6"
+            : "bg-white/50 dark:bg-[#0c0c0e]/50 backdrop-blur-md border border-black/5 dark:border-white/10 py-3.5 px-6"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          {/* Logo / Brand */}
+          <motion.a
+            href="#home"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-black dark:text-white group"
+          >
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white dark:bg-white dark:text-black transition-transform duration-300 group-hover:rotate-12">
+              <FiTerminal className="h-4 w-4" />
+            </div>
+            <span className="font-mono text-base tracking-wider">
+              JAGDEEP<span className="text-neutral-400 dark:text-neutral-500">.DEV</span>
+            </span>
+          </motion.a>
 
-        {/* Logo */}
-        <motion.a
-          href="#home"
-          whileHover={{ scale: 1.03 }}
-          className="
-            text-2xl
-            font-bold
-            tracking-tight
-            text-black
-            dark:text-white
-          "
-        >
-          Jagdeep
-          <span className="text-[#8edcd4]">.</span>
-        </motion.a>
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-300 transition-all duration-200 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="
-                relative
-                text-sm
-                font-medium
-                text-gray-800
-                transition-colors
-                duration-200
-                hover:text-[#8edcd4]
-                dark:text-gray-200
-                dark:hover:text-[#8edcd4]
-
-                after:absolute
-                after:-bottom-2
-                after:left-0
-                after:h-[2px]
-                after:w-0
-                after:rounded-full
-                after:bg-[#8edcd4]
-                after:transition-all
-                after:duration-300
-                hover:after:w-full
-              "
+          {/* Desktop Right Controls (Monochrome Dark/Light Switcher + Contact CTA) */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Dark/Light Mode Toggle Button */}
+            <motion.button
+              onClick={toggleDarkMode}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              className="relative flex h-9 w-9 items-center justify-center rounded-full border border-black/10 dark:border-white/15 bg-black/5 dark:bg-white/10 text-black dark:text-white transition-all hover:border-black/30 dark:hover:border-white/30"
+              aria-label="Toggle theme"
             >
-              {link.name}
-            </a>
-          ))}
-        </div>
+              <AnimatePresence mode="wait" initial={false}>
+                {darkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, scale: 0, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: 90, scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FiSun className="h-4 w-4 text-white" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, scale: 0, opacity: 0 }}
+                    animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                    exit={{ rotate: -90, scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FiMoon className="h-4 w-4 text-black" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
 
-        {/* Desktop Right Side */}
-        <div className="hidden items-center gap-2 md:flex">
+            {/* Let's Talk CTA */}
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-1.5 rounded-full bg-black dark:bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white dark:text-black shadow-sm transition-all hover:bg-neutral-800 dark:hover:bg-neutral-200"
+            >
+              <span>Let's Talk</span>
+              <FiArrowUpRight className="h-3.5 w-3.5" />
+            </motion.a>
+          </div>
 
-          
-          {/* <motion.a
-            href="https://github.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              transition-all duration-200
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="GitHub"
-          >
-            <FiGithub size={19} />
-          </motion.a> */}
+          {/* Mobile Right Controls */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Dark Mode Button for Mobile */}
+            <motion.button
+              onClick={toggleDarkMode}
+              whileTap={{ scale: 0.9 }}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 dark:border-white/15 bg-black/5 dark:bg-white/10 text-black dark:text-white"
+              aria-label="Toggle theme"
+            >
+              {darkMode ? <FiSun className="h-4 w-4" /> : <FiMoon className="h-4 w-4" />}
+            </motion.button>
 
-          {/* LinkedIn */}
-          {/* <motion.a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              transition-all duration-200
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="LinkedIn"
-          >
-            <FiLinkedin size={19} />
-          </motion.a> */}
-
-          {/* Email */}
-          {/* <motion.a
-            href="mailto:yourmail@gmail.com"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              transition-all duration-200
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="Email"
-          >
-            <FiMail size={19} />
-          </motion.a> */}
-
-          {/* Dark Mode */}
-          <motion.button
-            onClick={toggleDarkMode}
-            whileHover={{ scale: 1.1, rotate: 10 }}
-            whileTap={{ scale: 0.9 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              transition-all duration-200
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="Toggle dark mode"
-          >
-            <AnimatePresence mode="wait">
-              {darkMode ? (
-                <motion.span
-                  key="sun"
-                  initial={{
-                    rotate: -90,
-                    opacity: 0,
-                    scale: 0.5,
-                  }}
-                  animate={{
-                    rotate: 0,
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    rotate: 90,
-                    opacity: 0,
-                    scale: 0.5,
-                  }}
-                >
-                  <FiSun size={19} />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="moon"
-                  initial={{
-                    rotate: 90,
-                    opacity: 0,
-                    scale: 0.5,
-                  }}
-                  animate={{
-                    rotate: 0,
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    rotate: -90,
-                    opacity: 0,
-                    scale: 0.5,
-                  }}
-                >
-                  <FiMoon size={19} />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.button>
-
-          {/* Let's Talk */}
-          <motion.a
-            href="#contact"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 8px 25px rgba(142,220,212,0.25)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="
-              ml-3
-              rounded-full
-              bg-[#8edcd4]
-              px-5 py-2.5
-              text-sm font-semibold
-              text-black
-              transition-all duration-200
-            "
-          >
-            Let's Talk
-          </motion.a>
-        </div>
-
-        {/* Mobile Controls */}
-        <div className="flex items-center gap-1 md:hidden">
-
-          {/* Email */}
-          <motion.a
-            href="mailto:yourmail@gmail.com"
-            whileTap={{ scale: 0.9 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="Email"
-          >
-            <FiMail size={20} />
-          </motion.a>
-
-          {/* Dark Mode */}
-          <motion.button
-            onClick={toggleDarkMode}
-            whileTap={{ scale: 0.9 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? (
-              <FiSun size={20} />
-            ) : (
-              <FiMoon size={20} />
-            )}
-          </motion.button>
-
-          {/* Menu */}
-          <motion.button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            whileTap={{ scale: 0.9 }}
-            className="
-              rounded-full p-2.5
-              text-gray-800
-              hover:bg-[#8edcd4]/20
-              hover:text-[#8edcd4]
-              dark:text-gray-200
-            "
-            aria-label="Toggle navigation menu"
-          >
-            {menuOpen ? (
-              <FiX size={22} />
-            ) : (
-              <FiMenu size={22} />
-            )}
-          </motion.button>
+            {/* Hamburger Toggle */}
+            <motion.button
+              onClick={() => setMenuOpen((prev) => !prev)}
+              whileTap={{ scale: 0.9 }}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 dark:border-white/15 bg-black/5 dark:bg-white/10 text-black dark:text-white"
+              aria-label="Toggle Navigation Menu"
+            >
+              {menuOpen ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
+            </motion.button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Menu Dropdown */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{
-              opacity: 0,
-              height: 0,
-            }}
-            animate={{
-              opacity: 1,
-              height: "auto",
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{
-              duration: 0.25,
-              ease: "easeInOut",
-            }}
-            className="
-              overflow-hidden
-              border-t border-white/20
-              bg-white/10
-              backdrop-blur-2xl
-              backdrop-saturate-150
-              dark:border-white/10
-              dark:bg-black/20
-              md:hidden
-            "
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden pointer-events-auto mx-auto max-w-6xl mt-2 rounded-3xl bg-white/95 dark:bg-[#0c0c0e]/95 backdrop-blur-2xl border border-black/10 dark:border-white/15 p-5 shadow-2xl"
           >
-            <div className="flex flex-col px-6 py-5">
-
-              {navLinks.map((link, index) => (
-                <motion.a
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  initial={{
-                    opacity: 0,
-                    x: -20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    delay: index * 0.05,
-                  }}
-                  className="
-                    border-b border-black/10
-                    py-4
-                    text-sm font-medium
-                    text-gray-800
-                    transition-colors
-                    hover:text-[#8edcd4]
-                    dark:border-white/10
-                    dark:text-gray-200
-                  "
+                  className="px-4 py-3 rounded-2xl text-sm font-semibold tracking-wider text-neutral-800 dark:text-neutral-200 transition-colors hover:bg-black/5 dark:hover:bg-white/10"
                 >
                   {link.name}
-                </motion.a>
+                </a>
               ))}
-
-              {/* Mobile Let's Talk */}
-              <motion.a
-                href="#contact"
-                onClick={() => setMenuOpen(false)}
-                whileTap={{ scale: 0.97 }}
-                className="
-                  mt-5
-                  rounded-full
-                  bg-[#8edcd4]
-                  px-5 py-3
-                  text-center
-                  text-sm font-semibold
-                  text-black
-                "
-              >
-                Let's Talk
-              </motion.a>
-
+              <div className="mt-3 pt-3 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-full border border-black/10 dark:border-white/15 text-black dark:text-white"
+                  >
+                    <FiGithub className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-full border border-black/10 dark:border-white/15 text-black dark:text-white"
+                  >
+                    <FiLinkedin className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="mailto:jagdeep.dev@example.com"
+                    className="p-2 rounded-full border border-black/10 dark:border-white/15 text-black dark:text-white"
+                  >
+                    <FiMail className="h-4 w-4" />
+                  </a>
+                </div>
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-full bg-black dark:bg-white px-5 py-2.5 text-xs font-semibold text-white dark:text-black"
+                >
+                  Let's Talk
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 };
 
