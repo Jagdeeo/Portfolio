@@ -105,36 +105,113 @@ const Projects = () => {
           </motion.p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full border border-black/10 dark:border-white/15 bg-white/70 dark:bg-white/5 backdrop-blur-xl shadow-sm">
-            {[
-              { id: "all", label: "All Works" },
-              { id: "mern", label: "MERN Fullstack" },
-              { id: "security", label: "Cyber Security" },
-              { id: "ai", label: "AI & Tools" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setFilter(tab.id)}
-                className={`relative px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                  filter === tab.id
-                    ? "text-white dark:text-black"
-                    : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
-                }`}
-              >
-                {filter === tab.id && (
-                  <motion.div
-                    layoutId="activeProjectPill"
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="absolute inset-0 rounded-full bg-black dark:bg-white"
-                  />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* Filter Buttons */}
+<div className="flex justify-center w-full px-4 mb-14">
+  <div
+    className="
+      relative
+      w-full max-w-2xl
+      p-1.5
+      rounded-2xl sm:rounded-full
+      border border-black/10 dark:border-white/10
+      bg-white/60 dark:bg-neutral-900/60
+      backdrop-blur-2xl
+      shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+      dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]
+    "
+  >
+    {/* Subtle glow */}
+    <div
+      className="
+        absolute inset-0
+        rounded-2xl sm:rounded-full
+        bg-gradient-to-r
+        from-transparent
+        via-black/[0.03]
+        to-transparent
+        dark:via-white/[0.04]
+        pointer-events-none
+      "
+    />
+
+    <div className="relative flex flex-wrap justify-center items-center gap-1.5">
+      {[
+        { id: "all", label: "All Works" },
+        { id: "mern", label: "MERN Fullstack" },
+        { id: "security", label: "Cyber Security" },
+        { id: "ai", label: "AI & Tools" },
+      ].map((tab) => {
+        const isActive = filter === tab.id;
+
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setFilter(tab.id)}
+            className={`
+              group
+              relative
+              shrink-0
+              px-4 sm:px-5
+              py-2.5
+              rounded-full
+              text-[10px] sm:text-xs
+              font-semibold
+              uppercase
+              tracking-[0.1em]
+              whitespace-nowrap
+              transition-all
+              duration-300
+              outline-none
+              ${
+                isActive
+                  ? "text-white dark:text-black"
+                  : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+              }
+            `}
+          >
+            {/* Active pill */}
+            {isActive && (
+              <motion.div
+                layoutId="activeProjectPill"
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 28,
+                }}
+                className="
+                  absolute inset-0
+                  rounded-full
+                  bg-black dark:bg-white
+                  shadow-[0_4px_16px_rgba(0,0,0,0.18)]
+                  dark:shadow-[0_4px_16px_rgba(255,255,255,0.12)]
+                "
+              />
+            )}
+
+            {/* Hover background */}
+            {!isActive && (
+              <span
+                className="
+                  absolute inset-0
+                  rounded-full
+                  bg-black/[0.04]
+                  dark:bg-white/[0.06]
+                  opacity-0
+                  group-hover:opacity-100
+                  transition-opacity duration-300
+                "
+              />
+            )}
+
+            <span className="relative z-10">
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>
 
         {/* Project Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">

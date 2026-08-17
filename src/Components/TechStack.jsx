@@ -172,32 +172,96 @@ const TechStack = () => {
           </motion.p>
         </div>
 
-        {/* Tab Filters */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full border border-black/10 dark:border-white/15 bg-white/70 dark:bg-white/5 backdrop-blur-xl shadow-sm">
-            {categories.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "text-white dark:text-black"
-                    : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
-                }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activePill"
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="absolute inset-0 rounded-full bg-black dark:bg-white"
-                  />
-                )}
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+{/* Tab Filters */}
+<div className="flex justify-center mb-14 w-full px-4">
+  <div
+    className="
+      relative
+      w-full max-w-2xl
+      p-1.5
+      rounded-2xl sm:rounded-full
+      border border-black/10 dark:border-white/10
+      bg-white/60 dark:bg-neutral-900/60
+      backdrop-blur-2xl
+      shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+      dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]
+    "
+  >
+    {/* Subtle inner glow */}
+    <div className="absolute inset-0 rounded-2xl sm:rounded-full bg-gradient-to-r from-transparent via-black/[0.03] to-transparent dark:via-white/[0.04] pointer-events-none" />
 
+    <div className="relative flex flex-wrap justify-center items-center gap-1.5">
+      {categories.map((tab) => {
+        const isActive = activeTab === tab.id;
+
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`
+              relative
+              px-4 sm:px-6
+              py-2.5
+              rounded-full
+              text-[10px] sm:text-xs
+              font-semibold
+              uppercase
+              tracking-[0.12em]
+              whitespace-nowrap
+              transition-all
+              duration-300
+              outline-none
+              ${
+                isActive
+                  ? "text-white dark:text-black"
+                  : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+              }
+            `}
+          >
+            {/* Active background */}
+            {isActive && (
+              <motion.div
+                layoutId="activePill"
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 28,
+                }}
+                className="
+                  absolute inset-0
+                  rounded-full
+                  bg-black dark:bg-white
+                  shadow-[0_4px_15px_rgba(0,0,0,0.18)]
+                  dark:shadow-[0_4px_15px_rgba(255,255,255,0.15)]
+                "
+              />
+            )}
+
+            {/* Hover glow */}
+            {!isActive && (
+              <span
+                className="
+                  absolute inset-0
+                  rounded-full
+                  bg-black/[0.04]
+                  dark:bg-white/[0.06]
+                  opacity-0
+                  transition-opacity
+                  duration-300
+                  group-hover:opacity-100
+                "
+              />
+            )}
+
+            <span className="relative z-10">
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>
         {/* Technology Cards Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">

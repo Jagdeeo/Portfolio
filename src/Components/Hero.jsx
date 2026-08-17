@@ -184,7 +184,7 @@ export default function Hero() {
                 <FiLinkedin className="h-4 w-4" />
               </a>
               <a
-                href="mailto:jagdeep.dev@example.com"
+                href="mailto:JagdeepDhanda420@gmail.com"
                 aria-label="Email Contact"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 dark:border-white/15 bg-white/80 dark:bg-white/5 text-black dark:text-white transition-all hover:scale-110 hover:border-black dark:hover:border-white"
               >

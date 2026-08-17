@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   FiMail,
   FiSend,
@@ -41,9 +42,12 @@ const Contact = () => {
 
   return (
     <section
-      id="contact"
-      className="relative py-28 px-6 lg:px-12 bg-slate-100/70 dark:bg-[#0c0c0e] transition-colors duration-300 border-t border-black/5 dark:border-white/5"
+    id="contact"
+    className="relative py-28 px-6 lg:px-12 bg-slate-100/70 dark:bg-[#0c0c0e] transition-colors duration-300 border-t border-black/5 dark:border-white/5"
     >
+      <Helmet>
+        
+      </Helmet>
       {/* Background Dots */}
       <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
 
