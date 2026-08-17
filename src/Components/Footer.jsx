@@ -19,7 +19,7 @@ const Footer = () => {
                 <FiTerminal className="h-4 w-4" />
               </div>
               <span className="font-mono text-base tracking-wider">
-                JAGDEEP<span className="text-neutral-400">.DEV</span>
+                JAGDEEP.
               </span>
             </a>
             <p className="mt-2 text-xs font-mono text-neutral-400">
@@ -40,7 +40,7 @@ const Footer = () => {
           {/* Social Icons & Back to Top */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/Jagdeeo"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -49,7 +49,7 @@ const Footer = () => {
               <FiGithub className="h-4 w-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/jagdeep-dhanda-667b55227/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
@@ -58,7 +58,7 @@ const Footer = () => {
               <FiLinkedin className="h-4 w-4" />
             </a>
             <a
-              href="mailto:jagdeep.dev@example.com"
+              href="mailto:JagdeepDhanda420@gmail.com"
               aria-label="Email"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all hover:bg-white hover:text-black"
             >

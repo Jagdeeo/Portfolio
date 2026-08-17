@@ -12,7 +12,7 @@ import {
   FiCpu,
   FiCheckCircle,
 } from "react-icons/fi";
-import profileImage from "../assets/profile.jpeg";
+import profileImage from "../assets/my image .png";
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -77,25 +77,9 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* LEFT CONTENT COLUMN */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          <div className="lg:col-span-7 flex flex-col justify-center mt-4">
             
-            {/* Status Pill Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 20 }}
-              className="inline-flex items-center gap-2.5 self-start px-4 py-2 rounded-full border border-black/10 dark:border-white/15 bg-white/70 dark:bg-white/5 backdrop-blur-xl shadow-sm mb-6"
-            >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black dark:bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-black dark:bg-white"></span>
-              </span>
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
-                Available for Software Engineering Roles
-              </span>
-            </motion.div>
-
-            {/* Main Headline */}
+        
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -182,7 +166,7 @@ export default function Hero() {
                 Connect:
               </span>
               <a
-                href="https://github.com"
+                href="https://github.com/Jagdeeo"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub Profile"
@@ -191,7 +175,7 @@ export default function Hero() {
                 <FiGithub className="h-4 w-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/jagdeep-dhanda-667b55227/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn Profile"
@@ -241,7 +225,7 @@ export default function Hero() {
                   <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/20 bg-black/40 p-4 backdrop-blur-xl text-white">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-bold text-sm tracking-wide">Jagdeep</p>
+                        
                         <p className="text-xs text-neutral-300 font-mono">MERN & Security Specialist</p>
                       </div>
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black">
@@ -251,16 +235,7 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Floating Decorative Badge Pill Top-Right */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-4 -right-4 flex items-center gap-2 rounded-2xl border border-black/10 dark:border-white/20 bg-white dark:bg-[#121216] px-4 py-2.5 shadow-xl text-black dark:text-white"
-                >
-                  <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
-                  <span className="text-xs font-mono font-bold tracking-wider">MERN ARCHITECT</span>
-                </motion.div>
-
+    
                 {/* Floating Decorative Badge Pill Bottom-Left */}
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
@@ -268,7 +243,7 @@ export default function Hero() {
                   className="absolute -bottom-4 -left-4 flex items-center gap-2 rounded-2xl border border-black/10 dark:border-white/20 bg-white dark:bg-[#121216] px-4 py-2.5 shadow-xl text-black dark:text-white"
                 >
                   <FiShield className="h-4 w-4 text-black dark:text-white" />
-                  <span className="text-xs font-mono font-bold tracking-wider">CYBERSEC READY</span>
+                  <span className="text-xs font-mono font-bold tracking-wider">Jagdeep Dhanda.</span>
                 </motion.div>
               </div>
             </motion.div>

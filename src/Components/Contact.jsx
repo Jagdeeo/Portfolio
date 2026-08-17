@@ -22,7 +22,7 @@ const Contact = () => {
     message: "",
   });
 
-  const emailAddress = "jagdeep.dev@example.com";
+  const emailAddress = "JagdeepDhanda420@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -140,7 +140,7 @@ const Contact = () => {
               </h4>
 
               <a
-                href="https://github.com"
+                href="https://github.com/Jagdeeo"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 text-black dark:text-white transition-all hover:bg-black/5 dark:hover:bg-white/10 hover:translate-x-1"
@@ -156,7 +156,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/jagdeep-dhanda-667b55227/ "
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 text-black dark:text-white transition-all hover:bg-black/5 dark:hover:bg-white/10 hover:translate-x-1"
