@@ -65,15 +65,15 @@ const TechStack = () => {
     },
 
     // CYBER SECURITY
-    {
-      name: "Web Security & OWASP",
-      category: "security",
-      role: "Security Audit",
-      level: "Intermediate",
-      icon: FiShield,
-      description: "Defending web applications against SQL injection, XSS, CSRF, insecure CORS, and session vulnerabilities.",
-      tags: ["OWASP Top 10", "XSS Prevention", "CORS", "Sanitization"],
-    },
+    // {
+    //   name: "Web Security & OWASP",
+    //   category: "security",
+    //   role: "Security Audit",
+    //   level: "Intermediate",
+    //   icon: FiShield,
+    //   description: "Defending web applications against SQL injection, XSS, CSRF, insecure CORS, and session vulnerabilities.",
+    //   tags: ["OWASP Top 10", "XSS Prevention", "CORS", "Sanitization"],
+    // },
     {
       name: "JWT & Authentication",
       category: "security",
@@ -94,15 +94,15 @@ const TechStack = () => {
     },
 
     // AI & TOOLS
-    {
-      name: "Prompt Engineering",
-      category: "ai",
-      role: "AI Orchestration",
-      level: "Advanced",
-      icon: FiCpu,
-      description: "Designing context-aware system prompts, structured outputs, chain-of-thought instructions, and LLM integrations.",
-      tags: ["LLM Workflows", "System Prompts", "AI Agents"],
-    },
+    // {
+    //   name: "Prompt Engineering",
+    //   category: "ai",
+    //   role: "AI Orchestration",
+    //   level: "Advanced",
+    //   icon: FiCpu,
+    //   description: "Designing context-aware system prompts, structured outputs, chain-of-thought instructions, and LLM integrations.",
+    //   tags: ["LLM Workflows", "System Prompts", "AI Agents"],
+    // },
     {
       name: "Git & Version Control",
       category: "ai",
