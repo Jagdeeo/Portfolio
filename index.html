@@ -1,26 +1,142 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/my icon.png" />
+    <link rel="apple-touch-icon" href="/my icon.png" />
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jagdeep || Full-Stack MERN Developer & Cyber Security</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Primary SEO -->
+    <title>Jagdeep Dhanda | MERN Stack Developer in Kaithal, Haryana</title>
+
+    <meta
+      name="description"
+      content="Jagdeep Dhanda is a MERN Stack Developer and Full Stack Developer from Kaithal, Haryana, specializing in React, Node.js, Express, MongoDB, web development and cyber security."
+    />
+
+    <meta name="author" content="Jagdeep Dhanda" />
+    <meta name="creator" content="Jagdeep Dhanda" />
+    <meta name="publisher" content="Jagdeep Dhanda" />
+
+    <!-- Search Engine Instructions -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://jagdeepdhanda.vercel.app/" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#08080a" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jagdeep Dhanda | MERN Stack Developer in Kaithal" />
+    <meta
+      property="og:description"
+      content="Portfolio of Jagdeep Dhanda, a MERN Stack Developer and Full Stack Developer from Kaithal, Haryana."
+    />
+    <meta property="og:url" content="https://jagdeepdhanda.vercel.app/" />
+    <meta property="og:site_name" content="Jagdeep Dhanda Portfolio" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:image" content="https://jagdeepdhanda.vercel.app/my%20icon.png" />
+    <meta property="og:image:alt" content="Jagdeep Dhanda - MERN Stack Developer" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jagdeep Dhanda | MERN Stack Developer in Kaithal" />
+    <meta
+      name="twitter:description"
+      content="Jagdeep Dhanda is a MERN Stack Developer and Full Stack Developer from Kaithal, Haryana."
+    />
+    <meta name="twitter:image" content="https://jagdeepdhanda.vercel.app/my%20icon.png" />
+    <meta name="twitter:image:alt" content="Jagdeep Dhanda - MERN Stack Developer" />
+
+    <!-- Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://jagdeepdhanda.vercel.app/#person",
+        "name": "Jagdeep Dhanda",
+        "url": "https://jagdeepdhanda.vercel.app/",
+        "jobTitle": "MERN Stack Developer",
+        "description": "MERN Stack Developer and Full Stack Developer from Kaithal, Haryana, specializing in React, Node.js, Express, MongoDB, web development and cyber security.",
+        "image": "https://jagdeepdhanda.vercel.app/my%20icon.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kaithal",
+          "addressRegion": "Haryana",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": [
+          "MERN Stack",
+          "React.js",
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "JavaScript",
+          "Full Stack Development",
+          "Web Development",
+          "Cyber Security",
+          "REST API",
+          "Git",
+          "GitHub"
+        ],
+        "sameAs": [
+          "https://github.com/Jagdeeo",
+          "https://www.linkedin.com/in/jagdeep-dhanda-667b55227/"
+        ]
+      }
+    </script>
+
+    <!-- Structured Data: Website -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://jagdeepdhanda.vercel.app/#website",
+        "url": "https://jagdeepdhanda.vercel.app/",
+        "name": "Jagdeep Dhanda Portfolio",
+        "description": "Portfolio of Jagdeep Dhanda, MERN Stack Developer and Full Stack Developer in Kaithal, Haryana.",
+        "publisher": {
+          "@id": "https://jagdeepdhanda.vercel.app/#person"
+        },
+        "inLanguage": "en-IN"
+      }
+    </script>
+
+    <!-- Theme preference -->
     <script>
-      (function() {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
+      (function () {
+        const theme = localStorage.getItem("theme");
+
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
         } else {
-          document.documentElement.classList.add('dark');
+          document.documentElement.classList.add("dark");
         }
       })();
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-[#08080a] dark:text-slate-100 antialiased font-sans transition-colors duration-300 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-[#08080a] dark:text-slate-100 antialiased font-sans transition-colors duration-300 selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-black"
+  >
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
